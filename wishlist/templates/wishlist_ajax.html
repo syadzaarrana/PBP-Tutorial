@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Wishlist</title>
+{% endblock meta %}
+
+{% block content %}
+
+<nav class="navbar fixed-top bg-dark">
+    <div class="container-fluid" style="padding:3vh ;">
+      <span class="navbar-brand mb-0 h1" style="color:white ;">{{ nama }}</span>
+      <a class="btn btn-danger" href="{% url 'wishlist:logout' %}" role="button">Logout</a>
+    </div>
+</nav>
+
+<section style="background-color:#36454F ; height:100vh ;">
+    <br/>
+    <div style="margin:5vh ; margin-top:17vh ;">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nama Barang</th>
+                        <th>Harga Barang</th>
+                        <th>Deskripsi</th>
+                    </tr>
+                </thead>
+                <tbody class="table-light">
+                    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+                    {% for barang in list_barang %}
+                    <tr>
+                        <td>{{barang.nama_barang}}</td>
+                        <td>{{barang.harga_barang}}</td>
+                        <td>{{barang.deskripsi}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="sticky-bottom">
+            <small style="font-size:10px ;  color:white;">Sesi terakhir login: {{ last_login }}</small>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+<script>
+    $(document).ready(function(){
+        $.get("./fixtures/initial_wishlist_data.json", function(data) {
+            
+        });
+    });
+</script>
