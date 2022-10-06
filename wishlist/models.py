@@ -1,5 +1,6 @@
 from dataclasses import field
 from django.db import models
+from django import forms
 
 # Create your models here.
 class BarangWishlist(models.Model):
@@ -10,4 +11,4 @@ class BarangWishlist(models.Model):
 class AddWishlist(forms.ModelForm):
     class Meta:
         model = BarangWishlist
-        field = ['nama_barang', 'harga_barang', 'deskripsi']
+        fields = ['nama_barang', 'harga_barang', 'deskripsi']
